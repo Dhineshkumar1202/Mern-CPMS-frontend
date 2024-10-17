@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import StudentDashboard from './pages/StudentDashboard';
+import StudentDashboard from './pages/studentDashboard';
 import AdminDashboard from './pages/AdminDashboard';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
