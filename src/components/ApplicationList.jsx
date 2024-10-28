@@ -8,7 +8,7 @@ const ApplicationsList = () => {
   useEffect(() => {
     const fetchApplications = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/applications/');
+        const response = await axios.get('https://my-project-backend-ssaj.vercel.app/api/applications/');
         setApplications(response.data);
       } catch (error) {
         setError('Failed to load applications.');
