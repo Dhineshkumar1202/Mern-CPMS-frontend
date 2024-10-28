@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-const API_URL = 'https://my-project-backend-ssaj.vercel.app/api/applications/'; 
 
 export const submitApplication = async (applicationData) => {
     try {
