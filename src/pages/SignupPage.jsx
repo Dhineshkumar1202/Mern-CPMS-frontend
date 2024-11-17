@@ -14,7 +14,7 @@ const SignupPage = () => {
     const data = { name, email, password };
 
     try {
-      const response = await fetch('https://my-project-backend-ssaj.vercel.app/api/auth/signup', {
+      const response = await fetch('https://my-project-backend-5you.vercel.app/api/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),

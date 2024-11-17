@@ -10,7 +10,7 @@ const ApplicationForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://my-project-backend-ssaj.vercel.app/api/applications', { studentId, companyName, jobTitle });
+      const response = await axios.post('https://my-project-backend-5you.vercel.app/api/applications/', { studentId, companyName, jobTitle });
       if (response.status === 201) {
         alert('Application submitted successfully');
         setStudentId('');
