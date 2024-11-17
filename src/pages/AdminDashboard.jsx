@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';  
 import Sidebar from '../components/Sidebar';
 import { Bar, Line } from 'react-chartjs-2';
 import {
@@ -25,7 +26,18 @@ ChartJS.register(
 );
 
 const AdminDashboard = () => {
+    const navigate = useNavigate();  
+
+    const role = localStorage.getItem('role');
+    const token = localStorage.getItem('token');
+
     
+    useEffect(() => {
+        if (!token || role !== 'admin') {
+            navigate(role === 'student' ? '/student-dashboard' : '/login');
+        }
+    }, [token, role, navigate]);
+
     const barChartData = {
         labels: ['Drive 1', 'Drive 2', 'Drive 3', 'Drive 4'],
         datasets: [
@@ -38,27 +50,6 @@ const AdminDashboard = () => {
                 label: 'Interviews Scheduled',
                 data: [15, 10, 20, 12],
                 backgroundColor: 'rgba(153, 102, 255, 0.6)',
-            },
-        ],
-    };
-
-    
-    const lineChartData = {
-        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
-        datasets: [
-            {
-                label: 'Interviews Completed',
-                data: [5, 15, 10, 25],
-                borderColor: 'rgba(75, 192, 192, 0.8)',
-                fill: false,
-                tension: 0.1,
-            },
-            {
-                label: 'Interviews Scheduled',
-                data: [10, 12, 8, 30],
-                borderColor: 'rgba(153, 102, 255, 0.8)',
-                fill: false,
-                tension: 0.1,
             },
         ],
     };
@@ -102,7 +93,6 @@ const AdminDashboard = () => {
             <div style={{ flexGrow: 1, padding: '20px', backgroundColor: '#f4f6f9' }}>
                 <h1 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '20px' }}>Admin Dashboard</h1>
 
-              
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '20px', marginBottom: '30px' }}>
                     {cardData.map((card, index) => (
                         <div key={index} style={{ ...cardStyle, backgroundColor: card.color }}>
@@ -113,7 +103,6 @@ const AdminDashboard = () => {
                     ))}
                 </div>
 
-              
                 <div style={{ backgroundColor: '#fff', borderRadius: '8px', padding: '20px', boxShadow: '0px 4px 10px rgba(0,0,0,0.1)', marginBottom: '30px' }}>
                     <h2 style={{ fontSize: '18px', marginBottom: '20px' }}>Placement Statistics</h2>
                     <div style={{ height: '300px' }}>

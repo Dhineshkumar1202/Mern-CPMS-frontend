@@ -1,25 +1,32 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import StudentDashboard from './pages/studentDashboard';
-import AdminDashboard from './pages/AdminDashboard';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
+import Layout from './components/Layout';
+import HomePage from './pages/HomePage';
+import LoginPage from './pages/LoginPage';
+import SignupPage from './pages/SignupPage';
+import StudentDashboardPage from './pages/StudentDashboardPage';
+import NotFoundPage from './pages/NotFoundPage';
+import PrivateRoute from './components/PrivateRoute';
 
-
-const App = () => {
+function App() {
   return (
     <Router>
-      <Navbar />
       <Routes>
-        <Route path="/" element={<h1>Welcome to the College Placement Management System</h1>} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/student-dashboard" element={<StudentDashboard />} />
-        <Route path="/admin-dashboard" element={<AdminDashboard />} />
+        {/* Public Routes */}
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
+
+        {/* Protected Routes */}
+        <Route element={<PrivateRoute element={<Layout />} />}>
+          <Route path="/student-dashboard" element={<StudentDashboardPage />} />
+        </Route>
+
+        {/* Catch-all for 404 pages */}
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>
   );
-};
+}
 
 export default App;
